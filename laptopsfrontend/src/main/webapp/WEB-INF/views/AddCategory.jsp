@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <form:form method="POST" action="addcategory" commandName="category" enctype="multipart/form-data">
+  <form:form method="POST" action="addcat" commandName="category" >
   <table>
   <tr>
     <td><h2>Add Category</h2></td>
@@ -35,7 +35,7 @@
             
            </c:if>
            
-          <c:if test="${!empty category.categoryname }">
+          <c:if test="${!empty category.categoryname}">
           <td><input type="submit" value="Edit category"/></td>
           </c:if>
           
@@ -46,27 +46,27 @@
           
           <!--  core tags,if or choose, $-expression language -->
           
-          <c:if test="${!empty categoryList }">
+          <c:if test="${!empty categoryList}">
            <table class="tg">
             <tr>
-             <th>Category Id</th>
-             <th>CategoryName</th>
+             <td>Category Id</td>
+             <td>CategoryName</td>
              
-             <th>Supplier Id</th>
-             <th>Edit</th>
-             <th>Delete</th>
+            <!--  <td>Supplier Id</td> -->
+             <td>Edit</td>
+             <td>Delete</td>
              </tr>
              
-             <c:forEach items="${categoryList }" var="category">
+             <c:forEach items="${categoryList}" var="category">
              <tr>
-             <td>${category.catdid }</td>
-             <td>${category.categoryname }</td>
+             <td>${category.catid}</td>
+             <td>${category.categoryname}</td>
           
          <%-- <td>${product.category.catid }</td>
   <td>${product.supplier.supplierid }</td> --%>
-   <td><a href="<c:url value='/editproducts${category.catid }'/>">Edit</a></td>
+   <td><a href="<c:url value='/editcategory${category.catid}'/>">Edit</a></td>
    
-   <td><a href="<c:url value='/deleteproduct${category.catdid }'/>">Delete</a></td>
+   <td><a href="<c:url value='/deletecategory${category.catid}'/>">Delete</a></td>
    </tr>
    </c:forEach>
    

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.laptopsbackend.model.Category;
 import com.niit.laptopsbackend.model.Product;
+import com.niit.laptopsbackend.model.Supplier;
 @Repository("productDAO")
 public class ProductDAOImpl implements IProductDAO {
 
@@ -50,6 +51,7 @@ public class ProductDAOImpl implements IProductDAO {
 		List<Product>pro=query.list();
 		if(pro!=null)
 		{
+			System.out.println();
 			return pro;
 		
 		}
@@ -61,4 +63,56 @@ public class ProductDAOImpl implements IProductDAO {
 		
 	}
 
-}
+
+
+
+
+	public void delete(Product product) {
+		Session s=sessionFactory.getCurrentSession();
+		System.out.println("I am in DAO");
+		Transaction t=s.beginTransaction();
+		s.delete(product);
+		t.commit();
+		}
+		/*try {
+			sessionFactory.getCurrentSession().delete(product);
+			return true;
+		}catch(Exception e) {
+			System.out.println(e);
+			return false;
+		}*/
+	
+
+
+
+
+
+	public Product get(int id) {
+		String hql="from Product where prodid="+id;
+		Session s=sessionFactory.openSession();
+		System.out.println("I am in get");
+		Transaction t=s.beginTransaction();
+		Query query=s.createQuery(hql);
+		List<Product>prod=query.list();
+		if(prod==null)
+		{
+			
+			return null;
+		
+		}
+		else
+		{
+			System.out.println("List empty");
+			return prod.get(0);
+		}
+	}
+		/*try {
+			return sessionFactory.getCurrentSession().createQuery("from product where prodid=:id",Product.class).setParameter("id", id).getSingleResult();
+			
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}*/
+	}
+
+

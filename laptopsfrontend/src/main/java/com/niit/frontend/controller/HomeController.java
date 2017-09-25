@@ -1,22 +1,46 @@
 package com.niit.frontend.controller;
 
+import java.util.Collection;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.laptopsbackend.dao.IProductDAO;
+import com.niit.laptopsbackend.dao.IUserDAO;
 import com.niit.laptopsbackend.model.Product;
+import com.niit.laptopsbackend.model.User;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	IUserDAO userDAO;
+	
+	@Autowired
+	User user;
+	
+	@ModelAttribute
+	public User returnObj()
+	{
+		return new User();
+	}
 	
 		@RequestMapping("/")
 	public ModelAndView showHome()
@@ -28,10 +52,11 @@ public class HomeController {
 	@RequestMapping("/Login")
 	public ModelAndView showLogin()
 	{
-		 ModelAndView mv=new ModelAndView("AdminHome");
+		 ModelAndView mv=new ModelAndView("Login");
 		 
 		return mv; 
 	}
+	
 	@RequestMapping("/Register")
 	public ModelAndView showRegister()
 	{
@@ -128,6 +153,48 @@ public class HomeController {
 			 mv=new ModelAndView("Login");
 			 return mv;
 		 }
+	}
+	@RequestMapping(value="/login_seession_attributes")
+	public String login_session_attributes(HttpSession session, Model model,@RequestParam(value="usename")String id) {
+		String name=SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		System.out.println("inside security check");
+		session.setAttribute("name", name);
+		System.out.println(name);
+		user=userDAO.get(id);
+		session.setAttribute("email", user.getEmailid());
+		session.setAttribute("loggedInUser", user.getUsername());
+		
+		session.setAttribute("LoggedIn","true");
+		
+		@SuppressWarnings("unchecked")
+		Collection<GrantedAuthority> authorities=(Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		
+		String role="ROLE_USER";
+		for(GrantedAuthority authority : authorities) {
+			if(authority.getAuthority().equals(role)) {
+				System.out.println(role);
+				
+				return "viewproducts";
+			}else {
+				session.setAttribute("isAdmin", "true");
+			}
+		}
+		return "AdminHome";
+	}
+	
+	@RequestMapping(value="/addus",method=RequestMethod.POST)
+	public String addUSer(@ModelAttribute("user")User user,BindingResult result, HttpServletRequest request) {
+		System.out.println(user.getCpassword());
+		System.out.println(user.getPassword());
+		
+		user.setEnabled("true");
+		user.setRole("ROLE_USER");
+		
+		if(user.getCpassword().equals(user.getPassword())) {
+			userDAO.addUser(user);
+		}
+		return "Login";
 	}
 }
 

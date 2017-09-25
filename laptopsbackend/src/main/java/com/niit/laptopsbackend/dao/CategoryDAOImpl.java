@@ -1,5 +1,6 @@
 package com.niit.laptopsbackend.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -30,7 +31,7 @@ public class CategoryDAOImpl implements ICategoryDAO {
 		Transaction t=s.beginTransaction();
 		s.saveOrUpdate(category);
 		t.commit();
-		s.clear();
+		/*s.clear();*/
 		
 	}
 	@Transactional
@@ -39,8 +40,15 @@ public class CategoryDAOImpl implements ICategoryDAO {
 		Transaction tx=s.beginTransaction();
 		Query query=s.createQuery("From Category");
 		List<Category>cat=query.list();
+		Iterator<Category>it=cat.iterator();
+		while(it.hasNext())
+		{
+			Category c=(Category)it.next();
+			System.out.println(c.getCategoryname());
+		}
 		if(cat!=null)
 		{
+			System.out.println("Here "+cat);
 			return cat;
 		
 		}
@@ -52,26 +60,55 @@ public class CategoryDAOImpl implements ICategoryDAO {
 		// TODO Auto-generated method stub
 		
 	}
-	public boolean delete(Category category) {
-		try {
+	public void delete(Category category) {
+		Session s=sessionFactory.getCurrentSession();
+		System.out.println("I am in DAO");
+		Transaction t=s.beginTransaction();
+		s.delete(category);
+		t.commit();
+		}
+		
+		/*try {
 			sessionFactory.getCurrentSession().delete(category);
 			return true;
 		}catch(Exception e) {
 			System.out.println(e);
 			return false;
-		}
+		}*/
 		
-	}
+		
+		
+		
+	
 	public Category get(int id) {
-		try {
-			return sessionFactory.getCurrentSession().createQuery("from Category where supplierid=:id",Category.class).setParameter("id", id).getSingleResult();
+		
+		String hql="from Category where catid="+id;
+		Session s=sessionFactory.openSession();
+		System.out.println("I am in get");
+		Transaction t=s.beginTransaction();
+		Query query=s.createQuery(hql);
+		List<Category>cate=query.list();
+		if(cate==null)
+		{
+			
+			return null;
+		
+		}
+		else
+		{
+			System.out.println("List empty");
+			return cate.get(0);
+		}
+	}
+		/*try {
+			return sessionFactory.getCurrentSession().createQuery("from Category where categoryid=:id",Category.class).setParameter("id", id).getSingleResult();
 			
 		}catch(Exception e) {
 			System.out.println(e);
 			return null;
-		}
+		}*/
 		
 		
 	}
 	
-}
+

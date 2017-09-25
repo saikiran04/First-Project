@@ -18,8 +18,10 @@ import com.niit.laptopsbackend.dao.CategoryDAOImpl;
 import com.niit.laptopsbackend.dao.ICategoryDAO;
 import com.niit.laptopsbackend.dao.IProductDAO;
 import com.niit.laptopsbackend.dao.ISupplierDAO;
+import com.niit.laptopsbackend.dao.IUserDAO;
 import com.niit.laptopsbackend.dao.ProductDAOImpl;
 import com.niit.laptopsbackend.dao.SupplierDAOImpl;
+import com.niit.laptopsbackend.dao.UserDAOImpl;
 import com.niit.laptopsbackend.model.Category;
 import com.niit.laptopsbackend.model.Product;
 import com.niit.laptopsbackend.model.Supplier;
@@ -107,6 +109,20 @@ public class ApplicationConfig {
 	{
 		return new Supplier();
 	}
+	
+	@Autowired
+	@Bean(name="userDAO")
+	public IUserDAO getUserDAO(SessionFactory sessionFactory)
+	{
+		return new UserDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name="user")
+	public User getUser()
+	{
+		return new User();
+	}
+	
 	@Autowired
 	@Bean(name="transactionmanager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {

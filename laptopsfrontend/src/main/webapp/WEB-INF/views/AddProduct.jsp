@@ -38,17 +38,17 @@
           
           <!-- select:dropdown, items:collection, itemvalue:name to item -->
           
-          <%-- <tr>
-          <td>Category</td>
-          <td><form:select path="catid" item="${categorylist}" itemValue="catid" itemLabel="catid">
+          <tr>
+          <td>Category Id</td>
+          <td><form:select path="categoryname" items="${categoryList}" itemValue="categoryname" itemLabel="categoryname">
           </form:select></td>
           </tr>
 
          <tr>
-          <td>Supplier</td>
-          <td><form:select path="supplierid" item="${supplierlist}" itemValue="supplierid" itemLabel="supplierid">
+          <td>Supplier Id</td>
+          <td><form:select path="suppliername" items="${supplierList}" itemValue="suppliername" itemLabel="suppliername">
           </form:select></td>
-          </tr> --%>
+          </tr>
           
           <tr>
            <td><form:label path="img" >Select Image:</form:label></td>
@@ -75,14 +75,14 @@
           <!--  core tags,if or choose, $-expression language -->
           
           <c:if test="${!empty productList }">
-           <table class="tg">
+           <table class="tg" style="border:'1'">
             <tr>
              <th>Product Id</th>
              <th>ProductName</th>
              <th>Price</th>
              <th>Quantity</th>
-             <th>Category Id</th>
-             <th>Supplier Id</th>
+             <th>Category Name</th>
+             <th>Supplier Name</th>
              <th>Edit</th>
              <th>Delete</th>
              </tr>
@@ -93,8 +93,8 @@
              <td>${product.prodname }</td>
           <td>${product.price }</td>
           <td>${product.quantity }</td>
-         <%-- <td>${product.category.catid }</td>
-  <td>${product.supplier.supplierid }</td> --%>
+         <td>${product.category.categoryname }</td>
+  <td>${product.supplier.suppliername }</td>
    <td><a href="<c:url value='/editproducts${product.prodid }'/>">Edit</a></td>
    
    <td><a href="<c:url value='/deleteproduct${product.prodid }'/>">Delete</a></td>

@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table
 public class User {
@@ -20,6 +23,34 @@ public class User {
 	private int mobile;
 	private String password;
 	private String role;
+	
+	private String enabled;
+	
+	@Transient
+	private String cpassword;
+	
+	@Transient
+	private MultipartFile img;
+	
+	
+	public String getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+	public String getCpassword() {
+		return cpassword;
+	}
+	public void setCpassword(String cpassword) {
+		this.cpassword = cpassword;
+	}
+	public MultipartFile getImg() {
+		return img;
+	}
+	public void setImg(MultipartFile img) {
+		this.img = img;
+	}
 	public String getRole() {
 		return role;
 	}
@@ -50,10 +81,11 @@ public class User {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	public String getEmailId() {
+	
+	public String getEmailid() {
 		return emailid;
 	}
-	public void setEmailId(String emailid) {
+	public void setEmailid(String emailid) {
 		this.emailid = emailid;
 	}
 	public int getMobile() {

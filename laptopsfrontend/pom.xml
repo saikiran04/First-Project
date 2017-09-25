@@ -87,6 +87,28 @@
     <artifactId>spring-context-support</artifactId>
     <version>4.3.10.RELEASE</version>
 </dependency>
+<!-- security dependencies -->
+
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>3.2.10.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-core</artifactId>
+    <version>3.2.10.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>3.2.10.RELEASE</version>
+</dependency>
+
+
 
     </dependencies>
   <build>

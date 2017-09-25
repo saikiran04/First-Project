@@ -6,8 +6,8 @@ import com.niit.laptopsbackend.model.Supplier;
 
 public interface ISupplierDAO {
 	
-	public boolean saveOrUpdate(Supplier supplier);
-	public boolean delete(Supplier supplier);
+	public void saveOrUpdate(Supplier supplier);
+	public void delete(Supplier supplier);
 	public Supplier get(int id);
 	public List<Supplier> getSuppliers();
 

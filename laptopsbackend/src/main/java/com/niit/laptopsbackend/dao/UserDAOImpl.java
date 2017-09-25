@@ -16,6 +16,12 @@ public class UserDAOImpl implements IUserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	public UserDAOImpl(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean addUser(User user) {
 		Session s=sessionFactory.openSession();
 		Transaction tx=s.beginTransaction();
