@@ -154,8 +154,28 @@ public class HomeController {
 			 return mv;
 		 }
 	}
-	@RequestMapping(value="/login_seession_attributes")
-	public String login_session_attributes(HttpSession session, Model model,@RequestParam(value="usename")String id) {
+	@RequestMapping("/Signout")
+	public ModelAndView showLogout()
+	{
+		ModelAndView mv=new ModelAndView("mainpage");
+		return mv;
+	}
+	@RequestMapping("/perform_logout")
+	public ModelAndView showLogout(HttpServletRequest request,HttpSession session) {
+		System.out.println("logout");
+		ModelAndView mv=new ModelAndView("mainpage");
+		session.invalidate();
+		session=request.getSession(true);
+		mv.addObject("logOutMessage", "u have successfully loggedout");
+		mv.addObject("loggedOut", "true");
+		
+		return mv;
+		
+	}
+	
+	
+	@RequestMapping(value="/login_session_attributes")
+	public String login_session_attributes(HttpSession session, Model model,@RequestParam(value="username")String id) {
 		String name=SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		System.out.println("inside security check");
@@ -175,7 +195,7 @@ public class HomeController {
 			if(authority.getAuthority().equals(role)) {
 				System.out.println(role);
 				
-				return "viewproducts";
+				return "LoginDisplay";
 			}else {
 				session.setAttribute("isAdmin", "true");
 			}

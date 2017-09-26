@@ -45,7 +45,7 @@ public class UserDAOImpl implements IUserDAO {
 	public User get(String email) {
 
 		try {
-			return sessionFactory.openSession().createQuery("from User where emailid=:email",User.class).setParameter("eamil", email).getSingleResult();
+			return sessionFactory.openSession().createQuery("from User where emailid=:email",User.class).setParameter("email", email).getSingleResult();
 		
 			
 		}catch(Exception e) {

@@ -56,7 +56,7 @@
 				<c:when test="${not empty loggedInUser }">
 					<li><a href="AddtoCart">Cart</a></li>
 					<li><a href="#">View Profile</a></li>
-					<li><a href="#">Sign out</a></li>
+					<li><a href="mainpage">Sign out</a></li>
 
 					<form class="navbar-form navbar-right">
 						<div class="input-group">
