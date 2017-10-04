@@ -15,7 +15,7 @@
 		<intercept-url pattern="/AdminHome" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/AddCategory" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/AddProduct" access="hasRole('ROLE_ADMIN')" />
-		<!-- <intercept-url pattern="/" access="hasRole('ROLE_ADMIN)"/> -->
+		<intercept-url pattern="/AddtoCart" access="hasRole('ROLE_USER')"/>
 		<intercept-url pattern="/AddSupplier" access="hasRole('ROLE_ADMIN')" />
 		<!-- access denied page -->
 		<access-denied-handler error-page="/denied" />

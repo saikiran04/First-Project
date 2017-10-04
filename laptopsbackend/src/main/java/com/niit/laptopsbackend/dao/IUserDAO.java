@@ -12,4 +12,6 @@ public interface IUserDAO {
 	public User get(String email);
 	public List<User>getAllUsers();
 
+	public User getbyid(int i);
+
 }

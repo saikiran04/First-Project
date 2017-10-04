@@ -33,43 +33,43 @@ public class Product {
 	
 	@Column(name="catid")
 	private int  catid;
-	@Column(name="categoryname")
+	/*@Column(name="categoryname")
 	private String  categoryname;
 	public String getSuppliername() {
 		return suppliername;
 	}
 	public void setSuppliername(String suppliername) {
 		this.suppliername = suppliername;
-	}
+	}*/
 
 
 	@Column(name="supplierid")
 	private int supplierid;
-	@Column(name="suppliername")
+	/*@Column(name="suppliername")
 	private String suppliername;
 	public String getCategoryname() {
 		return categoryname;
 	}
 	public void setCategoryname(String categoryname) {
 		this.categoryname = categoryname;
-	}
+	}*/
 	
 	
-	/*@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="catid",insertable=false,updatable=false)
 	private Category category;
 	
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="supplierid",insertable=false,updatable=false)
 	private Supplier supplier;
-	*/
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	
+	/*@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="categoryname",insertable=false,updatable=false)
-	private Category category;
+	//private Category category;
 	
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="suppliername",insertable=false,updatable=false)
-	private Supplier supplier;
+*///	private Supplier supplier;
 	
 	public int getCatid() {
 		return catid;

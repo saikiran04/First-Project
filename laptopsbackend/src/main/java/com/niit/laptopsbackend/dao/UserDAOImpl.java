@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.niit.laptopsbackend.model.Category;
 import com.niit.laptopsbackend.model.User;
 @Repository("userDAO")
 public class UserDAOImpl implements IUserDAO {
@@ -74,6 +75,26 @@ public class UserDAOImpl implements IUserDAO {
 			return null;
 		}
 		
+	}
+
+	public User getbyid(int id) {
+		String hql="from User where id="+id;
+		Session s=sessionFactory.openSession();
+		System.out.println("I am in get");
+		Transaction t=s.beginTransaction();
+		Query query=s.createQuery(hql);
+		List<User>us=query.list();
+		if(us==null)
+		{
+			
+			return null;
+		
+		}
+		else
+		{
+			System.out.println("List empty");
+			return us.get(0);
+		}
 	}
 
 }

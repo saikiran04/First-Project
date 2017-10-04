@@ -13,6 +13,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>	
+<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
 <!-- <link rel="stylesheet" href="lib/bootstrap-3.3.6-dist/css/bootstrap.min.css"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,7 +36,7 @@
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">Brands<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">DELL</a></li>
+					<li><a href="ViewDetails">DELL</a></li>
 					<li><a href="#">APPLE</a></li>
 					<li><a href="#">LENOVO</a></li>
 
@@ -41,21 +44,26 @@
 				</ul></li>
 
 			
-			<li><a href="#"></a></li>
+			<li><a href="ViewProducts">Products</a></li>
 			<li><a href="Contactus">Contact Us</a></li>
 
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<c:choose>
-				<c:when test="${empty loggedInUser }">
+				<c:when test="${empty loggedInUser}">
 					<li><a href="Register"><span
 							class="glyphicon glyphicon-user"></span>Signup</a></li>
 					<li><a href="Login"><span
 							class="glyphicon glyphicon-log-in"></span>Login</a></li>
 				</c:when>
-				<c:when test="${not empty loggedInUser }">
+				<c:when test="${not empty loggedInUser}">
 					<li><a href="AddtoCart">Cart</a></li>
 					<li><a href="#">View Profile</a></li>
+					<div class="media" style="float:left;">
+					
+					<img src="/laptopsfrontend/images/2.jpg" class="media-object" style="width:80px">
+					</div>
+					<li class="navbar-text" style="font-size:100%">welcome ${loggedInUser}!</li>
 					<li><a href="mainpage">Sign out</a></li>
 
 					<form class="navbar-form navbar-right">

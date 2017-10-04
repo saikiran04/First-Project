@@ -40,13 +40,13 @@
           
           <tr>
           <td>Category Id</td>
-          <td><form:select path="categoryname" items="${categoryList}" itemValue="categoryname" itemLabel="categoryname">
+          <td><form:select path="catid" items="${categoryList}" itemValue="catid" itemLabel="catid">
           </form:select></td>
           </tr>
 
          <tr>
           <td>Supplier Id</td>
-          <td><form:select path="suppliername" items="${supplierList}" itemValue="suppliername" itemLabel="suppliername">
+          <td><form:select path="supplierid" items="${supplierList}" itemValue="supplierid" itemLabel="supplierid">
           </form:select></td>
           </tr>
           

@@ -56,21 +56,24 @@ public class HomeController {
 		 
 		return mv; 
 	}
-	
+	@RequestMapping("/ViewProducts")
+	public ModelAndView showProducts()
+	{
+		 ModelAndView mv=new ModelAndView("ViewProducts");
+		 
+		return mv; 
+	}
+	@RequestMapping("/ViewDetails")
+	public ModelAndView showDetails()
+	{
+		 ModelAndView mv=new ModelAndView("ViewDetails");
+		 
+		return mv; 
+	}
 	@RequestMapping("/Register")
 	public ModelAndView showRegister()
 	{
 		 ModelAndView mv=new ModelAndView("Register");
-		 String email1="saikiranreddy04@gmail.com";
-		 String recipientAddress=email1;
-		 String subject="User Registration";
-		 String message="User Registered Sucesfully";
-		 
-		 //create a simple email obj
-		 SimpleMailMessage email=new SimpleMailMessage();
-		 email.setTo(recipientAddress);
-		 email.setSubject(subject);
-		 email.setText(message);
 		 
 		 
 		return mv; 
@@ -96,7 +99,7 @@ public class HomeController {
 		 
 		return mv; 
 	}
-	@RequestMapping("/Cart")
+	/*@RequestMapping("/Cart")
 	public ModelAndView showCart()
 	{
 		 ModelAndView mv=new ModelAndView("Cart");
@@ -109,7 +112,7 @@ public class HomeController {
 		 ModelAndView mv=new ModelAndView("AddtoCart");
 		 
 		return mv; 
-	}
+	}*/
 	
 	/*@RequestMapping("/AddProduct")
 	public ModelAndView showProduct(Model model) {
@@ -204,7 +207,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/addus",method=RequestMethod.POST)
-	public String addUSer(@ModelAttribute("user")User user,BindingResult result, HttpServletRequest request) {
+	public String addUSer(@ModelAttribute("user")User user,BindingResult result, HttpServletRequest request,HttpSession session) {
 		System.out.println(user.getCpassword());
 		System.out.println(user.getPassword());
 		
@@ -214,6 +217,22 @@ public class HomeController {
 		if(user.getCpassword().equals(user.getPassword())) {
 			userDAO.addUser(user);
 		}
+		session=request.getSession(false);
+		session.setAttribute("email",user.getEmailid());
+		session.setAttribute("loggedInUser",user.getUsername());
+		String email1=(String)session.getAttribute("email");
+		String username=(String)session.getAttribute("loggedInUser");
+		//String email1="saikiranreddy04@gmail.com";
+		 String recipientAddress=email1;
+		 String subject="User Registration";
+		 String message="User Registered Sucesfully";
+		 
+		 //create a simple email obj
+		 SimpleMailMessage email=new SimpleMailMessage();
+		 email.setTo(recipientAddress);
+		 email.setSubject(subject);
+		 email.setText(message);
+		 
 		return "Login";
 	}
 }

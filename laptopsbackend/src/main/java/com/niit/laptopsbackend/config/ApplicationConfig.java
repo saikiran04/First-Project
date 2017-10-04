@@ -14,7 +14,9 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.laptopsbackend.dao.CartDAOImpl;
 import com.niit.laptopsbackend.dao.CategoryDAOImpl;
+import com.niit.laptopsbackend.dao.ICartDAO;
 import com.niit.laptopsbackend.dao.ICategoryDAO;
 import com.niit.laptopsbackend.dao.IProductDAO;
 import com.niit.laptopsbackend.dao.ISupplierDAO;
@@ -22,6 +24,7 @@ import com.niit.laptopsbackend.dao.IUserDAO;
 import com.niit.laptopsbackend.dao.ProductDAOImpl;
 import com.niit.laptopsbackend.dao.SupplierDAOImpl;
 import com.niit.laptopsbackend.dao.UserDAOImpl;
+import com.niit.laptopsbackend.model.Cart;
 import com.niit.laptopsbackend.model.Category;
 import com.niit.laptopsbackend.model.Product;
 import com.niit.laptopsbackend.model.Supplier;
@@ -108,6 +111,18 @@ public class ApplicationConfig {
 	public Supplier getSupplier()
 	{
 		return new Supplier();
+	}
+	@Autowired
+	@Bean(name="cart")
+	public Cart getCart()
+	{
+		return new Cart();
+	}
+	@Autowired
+	@Bean(name="cartDAO")
+	public ICartDAO getCartDAO(SessionFactory sessionFactory)
+	{
+		return new CartDAOImpl(sessionFactory);
 	}
 	
 	@Autowired
