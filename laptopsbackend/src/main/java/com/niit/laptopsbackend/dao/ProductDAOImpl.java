@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.laptopsbackend.model.Category;
+
 import com.niit.laptopsbackend.model.Product;
-import com.niit.laptopsbackend.model.Supplier;
+
 @Repository("productDAO")
 public class ProductDAOImpl implements IProductDAO {
 
@@ -49,6 +49,7 @@ public class ProductDAOImpl implements IProductDAO {
 		Transaction tx=s.beginTransaction();
 		Query query=s.createQuery("From Product");
 		List<Product>pro=query.list();
+		tx.commit();
 		if(pro!=null)
 		{
 			System.out.println();

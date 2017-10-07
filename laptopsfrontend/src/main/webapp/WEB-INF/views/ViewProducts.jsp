@@ -29,7 +29,7 @@
 														}
 													},
 													{
-														"data" : "qty"
+														"data" : "quantity"
 													},
 													{
 														"data" : "prodname",
@@ -43,13 +43,13 @@
 														"data" : "prodid",
 														"render" : function(
 																data, type, row) {
-															return "<a href='http://localhost:8092/laptopsfrontend/pics/"+row.prodid+"/ViewDetails' class='btn btn-primary'>view</a>";
+															return "<a href='http://localhost:8092/laptopsfrontend/"+row.prodid+"/ViewDetails' class='btn btn-primary'>view</a>";
 														}
-													},
+													/* },
 											 {"data":"",
 												"render":function(data,type,row){
 												 return "<a href='http://localhost:8092/laptopsfrontend/"+row.prodid+"/AddtoCart' class='btn btn-primary'>Add to Cart</a>";	
-												}
+												} */
 											} 
 
 											]

@@ -173,7 +173,7 @@ public class CartDAOImpl implements ICartDAO {
 	}
 
 	public int totalprice(int id) {
-		 try {
+		 /*try {
 			   String hql="from Cart where userid="+id;
 				
 				Query query=sessionFactory.openSession().createQuery(hql);
@@ -189,15 +189,65 @@ public class CartDAOImpl implements ICartDAO {
 			   }catch(HibernateException e) {
 				   e.printStackTrace();
 				   return 0;
-			   }
+			   }*/return 0;
 	}
 
 	@Transactional
 	public List<Cart> list() {
+	try {
+		String hql="from Cart";
+		Session s=sessionFactory.getCurrentSession();
+		Transaction tx=s.beginTransaction();
+		org.hibernate.Query query=s.createQuery(hql);
+		List<Cart> all=query.list();
+		tx.commit();
+		return all;
+	}catch (HibernateException e) {
+		e.printStackTrace();
+		return null;
+	}
 		
+		
+	}
+
+	@Transactional
+	public boolean resetCart(int id) {
+		try {
+			Cart cart= getCart(id);
+			cart.setGrandtotal(0);
+			cart.setQuantity(0);
+			update(cart);
+			return true;
+		}catch(Exception e) {
+			System.out.println(e);
+			return false;
+		}
+
+	}
+
+	@Transactional
+	public Cart getCart(int id) {
+		try {
+			return sessionFactory.getCurrentSession().createQuery("from Cart where cartid=:id ",Cart.class).setParameter("id", id).getSingleResult();
 			
+		}catch (Exception e) {
+			System.out.println(e);
 			return null;
-		
+		}
+
+	}
+
+	@Transactional
+	public Cart getCartWithUserId(Integer id) {
+		try {
+			return sessionFactory.getCurrentSession().createQuery("from Cart where user_id=:id ",Cart.class).setParameter("id", id).getSingleResult();
+			
+		}catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+
+
 	}
 
 }

@@ -12,8 +12,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +38,8 @@ public class HomeController {
 	@Autowired
 	User user;
 	
+	@Autowired
+	IProductDAO productDAO;
 	@ModelAttribute
 	public User returnObj()
 	{
@@ -63,12 +67,12 @@ public class HomeController {
 		 
 		return mv; 
 	}
-	@RequestMapping("/ViewDetails")
-	public ModelAndView showDetails()
+	@RequestMapping("/{id}/ViewDetails")
+	public String showDetails(@PathVariable Integer id,ModelMap model)
 	{
-		 ModelAndView mv=new ModelAndView("ViewDetails");
+		model.addAttribute("product",productDAO.get(id));
 		 
-		return mv; 
+		return "ViewDetails" ;
 	}
 	@RequestMapping("/Register")
 	public ModelAndView showRegister()
