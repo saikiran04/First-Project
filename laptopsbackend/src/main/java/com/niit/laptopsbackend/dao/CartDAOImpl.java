@@ -131,7 +131,7 @@ public class CartDAOImpl implements ICartDAO {
    @Transactional
 	public List<Cart> listcartproducts(int id) {
 		try {
-			   String hql="from Cart where userid="+id;
+			   String hql="from Cart where user_userid="+id;
 				Session s=sessionFactory.openSession();
 				System.out.println("I am in get");
 				Transaction tx=s.beginTransaction();
@@ -151,7 +151,7 @@ public class CartDAOImpl implements ICartDAO {
 
 	public int totalproducts(int id) {
 		 try {
-			   String hql="from Cart where userid="+id;
+			   String hql="from Cart where user_userid="+id;
 				Session s=sessionFactory.openSession();
 				System.out.println("I am in get");
 				Transaction tx=s.beginTransaction();
@@ -240,7 +240,7 @@ public class CartDAOImpl implements ICartDAO {
 	@Transactional
 	public Cart getCartWithUserId(Integer id) {
 		try {
-			return sessionFactory.getCurrentSession().createQuery("from Cart where user_id=:id ",Cart.class).setParameter("id", id).getSingleResult();
+			return sessionFactory.getCurrentSession().createQuery("from Cart where user_userid=:id ",Cart.class).setParameter("id", id).getSingleResult();
 			
 		}catch (Exception e) {
 			System.out.println(e);

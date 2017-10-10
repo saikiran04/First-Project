@@ -58,11 +58,11 @@ public class AdminController {
 	@Autowired
 	ISupplierDAO supplierDAO;
 	
-	@Autowired
+	/*@Autowired
 	ICartDAO cartDAO;
 	
 	@Autowired
-	ICartItemDAO cartItemDAO;
+	ICartItemDAO cartItemDAO;*/
 	
 	@Autowired
 	Cart cart;
@@ -258,7 +258,7 @@ public class AdminController {
 	
 	//-------------------------------------- Cart Operations-------------------------------------------------------------------
 	
-	@RequestMapping("/{id}/AddToCart")
+	/*@RequestMapping("/{id}/AddToCart")
 	public String showDetails(@PathVariable Integer id, ModelMap model) {
 
 		model.addAttribute("cart", cartDAO.listcartproducts(id));
@@ -293,9 +293,9 @@ public class AdminController {
 
 		model.addAttribute("product", cartDAO.getbyid(i));
 		
-		/*model.addAttribute("productList", productDAO.list());
+		model.addAttribute("productList", productDAO.list());
 		model.addAttribute("supplierList", supplierDAO.list());
-		model.addAttribute("categoryList", categoryDAO.list());*/
+		model.addAttribute("categoryList", categoryDAO.list());
 		cartDAO.update(cart);
 		System.out.println("edit cart in controller");
 		ModelAndView mv = new ModelAndView("addtocart");
@@ -361,6 +361,6 @@ public class AdminController {
 				return "Cart";
 	}
 		     
-
+*/
 	}
 

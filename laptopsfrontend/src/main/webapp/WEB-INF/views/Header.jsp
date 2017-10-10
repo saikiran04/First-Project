@@ -58,7 +58,7 @@
 							class="glyphicon glyphicon-log-in"></span>Login</a></li>
 				</c:when>
 				<c:when test="${not empty loggedInUser}">
-					<li><a href="AddtoCart">Cart</a></li>
+					<li><a href="Cart">Cart</a></li>
 					<li><a href="#">View Profile</a></li>
 					<div class="media" style="float:left;">
 					

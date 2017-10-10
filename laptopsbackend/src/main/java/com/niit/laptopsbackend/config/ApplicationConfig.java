@@ -15,8 +15,10 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.laptopsbackend.dao.CartDAOImpl;
+import com.niit.laptopsbackend.dao.CartItemDAOImpl;
 import com.niit.laptopsbackend.dao.CategoryDAOImpl;
 import com.niit.laptopsbackend.dao.ICartDAO;
+import com.niit.laptopsbackend.dao.ICartItemDAO;
 import com.niit.laptopsbackend.dao.ICategoryDAO;
 import com.niit.laptopsbackend.dao.IProductDAO;
 import com.niit.laptopsbackend.dao.ISupplierDAO;
@@ -25,6 +27,7 @@ import com.niit.laptopsbackend.dao.ProductDAOImpl;
 import com.niit.laptopsbackend.dao.SupplierDAOImpl;
 import com.niit.laptopsbackend.dao.UserDAOImpl;
 import com.niit.laptopsbackend.model.Cart;
+import com.niit.laptopsbackend.model.CartItem;
 import com.niit.laptopsbackend.model.Category;
 import com.niit.laptopsbackend.model.Product;
 import com.niit.laptopsbackend.model.Supplier;
@@ -67,6 +70,8 @@ public class ApplicationConfig {
 		sessionBuilder.addAnnotatedClasses(User.class);
 		sessionBuilder.addAnnotatedClasses(Category.class);
 		sessionBuilder.addAnnotatedClasses(Supplier.class);
+		sessionBuilder.addAnnotatedClasses(Cart.class);
+		sessionBuilder.addAnnotatedClasses(CartItem.class);
 		System.out.println("session factory");
 		return sessionBuilder.buildSessionFactory();
 	}
@@ -138,6 +143,18 @@ public class ApplicationConfig {
 		return new User();
 	}
 	
+	@Autowired
+	@Bean(name="cartitem")
+	public CartItem getCartItem()
+	{
+		return new CartItem();
+	}
+	@Autowired
+	@Bean(name="cartItemDAO")
+	public ICartItemDAO getCartItemDAO(SessionFactory sessionFactory)
+	{
+		return new CartItemDAOImpl(sessionFactory);
+	}
 	@Autowired
 	@Bean(name="transactionmanager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {

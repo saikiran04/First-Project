@@ -64,7 +64,7 @@ public class HomeController {
 	public ModelAndView showProducts()
 	{
 		 ModelAndView mv=new ModelAndView("ViewProducts");
-		 
+		  
 		return mv; 
 	}
 	@RequestMapping("/{id}/ViewDetails")
