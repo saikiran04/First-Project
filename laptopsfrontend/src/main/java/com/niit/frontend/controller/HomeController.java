@@ -1,5 +1,9 @@
 package com.niit.frontend.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.laptopsbackend.dao.IProductDAO;
@@ -40,6 +45,7 @@ public class HomeController {
 	
 	@Autowired
 	IProductDAO productDAO;
+	
 	@ModelAttribute
 	public User returnObj()
 	{
@@ -67,6 +73,15 @@ public class HomeController {
 		  
 		return mv; 
 	}
+	
+	@RequestMapping("/{id}ViewProfile")
+	public String showProfile(@PathVariable Integer id,ModelMap model)
+	{
+		model.addAttribute("user",userDAO.getbyid(id));
+		 
+		return "ViewProfile" ;
+	}
+	
 	@RequestMapping("/{id}/ViewDetails")
 	public String showDetails(@PathVariable Integer id,ModelMap model)
 	{
@@ -189,9 +204,11 @@ public class HomeController {
 		session.setAttribute("name", name);
 		System.out.println(name);
 		user=userDAO.get(id);
+		int x=user.getUserid();
+		System.out.println(user.getUserid());
 		session.setAttribute("email", user.getEmailid());
 		session.setAttribute("loggedInUser", user.getUsername());
-		
+		session.setAttribute("loggedInUserID",x);
 		session.setAttribute("LoggedIn","true");
 		
 		@SuppressWarnings("unchecked")
@@ -201,7 +218,8 @@ public class HomeController {
 		for(GrantedAuthority authority : authorities) {
 			if(authority.getAuthority().equals(role)) {
 				System.out.println(role);
-				
+/*				model.addAttribute("userList",userDAO.get(id));
+*/				
 				return "LoginDisplay";
 			}else {
 				session.setAttribute("isAdmin", "true");
@@ -211,10 +229,24 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/addus",method=RequestMethod.POST)
-	public String addUSer(@ModelAttribute("user")User user,BindingResult result, HttpServletRequest request,HttpSession session) {
+	public String addUSer(@ModelAttribute("user")User user,BindingResult result, HttpServletRequest request,HttpSession session)throws IOException {
 		System.out.println(user.getCpassword());
 		System.out.println(user.getPassword());
-		
+		MultipartFile image=user.getImg();
+		Path path;
+		path=Paths.get("C:/Users/Asaikiran/gitmain/laptopsfrontend/src/main/webapp/pics/" +user.getUsername() + ".jpg");
+		System.out.println("Path=" + path);
+		System.out.println("File name=" + user.getImg().getOriginalFilename());
+		if(image !=null&& !image.isEmpty()) {
+			try {
+				image.transferTo(new File(path.toString()));
+				System.out.println("Image saved in: " +path.toString());
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("Image not saved");
+			}
+		}
 		user.setEnabled("true");
 		user.setRole("ROLE_USER");
 		

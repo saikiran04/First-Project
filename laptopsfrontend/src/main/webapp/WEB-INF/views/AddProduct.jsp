@@ -5,6 +5,14 @@
 
 <html>
 <head>
+<style>
+table{
+align:centre;
+border:1;
+
+}
+
+</style>
 
 <title>Add Product</title>
 </head>

@@ -24,7 +24,7 @@
 						<td>${product.quantity}</td>
 					</tr>
 					<tr>
-						<td><a href="AddtoCart"><input type="submit" value="AddtoCart" /></a></td>
+						<td><a href="Cart"><input type="submit" value="AddtoCart" /></a></td>
 					</tr>
 
 				</table>

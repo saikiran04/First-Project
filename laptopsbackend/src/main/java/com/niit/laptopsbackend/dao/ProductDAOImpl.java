@@ -40,7 +40,7 @@ public class ProductDAOImpl implements IProductDAO {
 	}
 
 
-
+	
 
 	@Transactional
 	public List<Product> list() {
@@ -97,13 +97,13 @@ public class ProductDAOImpl implements IProductDAO {
 		List<Product>prod=query.list();
 		if(prod==null)
 		{
-			
+			System.out.println("List empty");
 			return null;
 		
 		}
 		else
 		{
-			System.out.println("List empty");
+			System.out.println("List  not empty");
 			return prod.get(0);
 		}
 	}

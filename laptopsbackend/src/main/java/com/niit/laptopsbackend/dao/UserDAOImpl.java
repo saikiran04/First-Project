@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.laptopsbackend.model.Category;
 import com.niit.laptopsbackend.model.User;
@@ -44,8 +45,31 @@ public class UserDAOImpl implements IUserDAO {
 	}
 
 	public User get(String email) {
+		String hql="from User where emailid='"+email+"'";
+		Session s=sessionFactory.openSession();
+		System.out.println("I am in get");
+		Transaction t=s.beginTransaction();
+		Query query=s.createQuery(hql);
+		List<User>us=query.list();
+		if(us==null)
+		{
+			System.out.println("List empty");
+			return null;
+		
+		}
+		else
+		{
+			for(User u:us)
+			{
+				System.out.println(u.getEmailid());
+				System.out.println(u.getFirstname());
+			}
+			
+			return us.get(0);
+		}
+		
 
-		try {
+		/*try {
 			return sessionFactory.openSession().createQuery("from User where emailid=:email",User.class).setParameter("email", email).getSingleResult();
 		
 			
@@ -53,17 +77,19 @@ public class UserDAOImpl implements IUserDAO {
 			System.out.println(e);
 			return null;
 		}
-
+*/
 		
 	}
 
-	@SuppressWarnings("rawtypes")
+	/*@SuppressWarnings("rawtypes")*/
+	@Transactional
 	public List<User> getAllUsers() {
 
 		Session s=sessionFactory.openSession();
 		Transaction tx=s.beginTransaction();
 		Query query=s.createQuery("From User");
 		List<User>us=query.list();
+		tx.commit();
 		if(us!=null)
 		{
 			return us;
@@ -78,7 +104,7 @@ public class UserDAOImpl implements IUserDAO {
 	}
 
 	public User getbyid(int id) {
-		String hql="from User where id="+id;
+		String hql="from User where userid="+id;
 		Session s=sessionFactory.openSession();
 		System.out.println("I am in get");
 		Transaction t=s.beginTransaction();

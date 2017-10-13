@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,7 +39,7 @@
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">Brands<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="ViewDetails">DELL</a></li>
+					<li><a href="#">DELL</a></li>
 					<li><a href="#">APPLE</a></li>
 					<li><a href="#">LENOVO</a></li>
 
@@ -59,10 +61,10 @@
 				</c:when>
 				<c:when test="${not empty loggedInUser}">
 					<li><a href="Cart">Cart</a></li>
-					<li><a href="#">View Profile</a></li>
+					<li><a href="${loggedInUserID}ViewProfile">View Profile</a></li>
 					<div class="media" style="float:left;">
 					
-					<img src="/laptopsfrontend/images/2.jpg" class="media-object" style="width:80px">
+					<img src="/laptopsfrontend/pics/${loggedInUser}.jpg" class="media-object" style="width:80px"></img>
 					</div>
 					<li class="navbar-text" style="font-size:100%">welcome ${loggedInUser}!</li>
 					<li><a href="mainpage">Sign out</a></li>

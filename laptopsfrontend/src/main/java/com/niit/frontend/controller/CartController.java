@@ -183,6 +183,7 @@ public String addCart(@PathVariable Integer id, Principal principal,ModelMap mod
      Cart cart=cartDAO.getCartWithUserId(user.getUserid());
      if(cart!=null)
      {
+    	 System.out.println("cart is not null");
     	 cart.setUser(user);
     		
     	CartItem cartItem=cartItemDAO.getExistingCartItemCount(id, cart.getCartid());
@@ -210,6 +211,7 @@ public String addCart(@PathVariable Integer id, Principal principal,ModelMap mod
     	
      }else
      {
+    	 System.out.println("cart is adding");
     	 cart=new Cart();
     	 cart.setGrandtotal(product.getPrice());
     	 cart.setQuantity(1);
@@ -227,24 +229,6 @@ public String addCart(@PathVariable Integer id, Principal principal,ModelMap mod
      model.addAttribute("mycartList", cartItemDAO.getAll());
 			return "Cart";
 }
-	     
-
-	
-
-
-	/*@RequestMapping("/{id}/ViewDetails")
-			public String showDetails(@PathVariable Integer id, ModelMap model) {
-				model.addAttribute("product", productDAO.get(id));
-				return "ViewDetails";
-			}*/
-		
-			/*@RequestMapping("/allproducts")
-			public @ResponseBody List<Product> productsall() {
-				System.out.println("inside products all");
-				return productDAO.list();
-			}
-
-*/
 	
 
 
