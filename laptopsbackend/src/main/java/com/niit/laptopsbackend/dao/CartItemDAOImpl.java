@@ -20,7 +20,8 @@ public class CartItemDAOImpl implements ICartItemDAO {
 
 	@Autowired
 	 SessionFactory sessionFactory;
-	public CartItemDAOImpl(SessionFactory sessionFactory2) {
+	public CartItemDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory=sessionFactory;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -52,7 +53,7 @@ public class CartItemDAOImpl implements ICartItemDAO {
 	public List<CartItem> getAll() {
 		try {
 			String hql="from CartItem";
-			Session s=sessionFactory.getCurrentSession();
+			Session s=sessionFactory.openSession();
 			Transaction tx=s.beginTransaction();
 			org.hibernate.Query query=s.createQuery(hql);
 			List<CartItem> all=query.list();
@@ -138,6 +139,7 @@ public class CartItemDAOImpl implements ICartItemDAO {
 	public CartItem getExistingCartItemCount(int prodid, int cart_id) {
 		try {
 			String hql="from CartItem where product_prodid="+prodid+" and cart_cartid="+cart_id;
+			System.out.println(hql);
 			Session s=sessionFactory.getCurrentSession();
 			Transaction tx=s.beginTransaction();
 			Query query=s.createQuery(hql);

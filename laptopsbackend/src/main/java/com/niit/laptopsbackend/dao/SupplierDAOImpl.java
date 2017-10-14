@@ -51,7 +51,7 @@ public class SupplierDAOImpl implements ISupplierDAO {
 
 	public void delete(Supplier supplier) {
 		Session s=sessionFactory.getCurrentSession();
-		System.out.println("I am in DAO");
+		System.out.println("I am in Supplier DAO");
 		Transaction t=s.beginTransaction();
 		s.delete(supplier);
 		t.commit();
@@ -79,7 +79,7 @@ public class SupplierDAOImpl implements ISupplierDAO {
 		}*/
 		String hql="from Supplier where supplierid="+id;
 		Session s=sessionFactory.openSession();
-		System.out.println("I am in get");
+		System.out.println("I am in supplier get");
 		Transaction t=s.beginTransaction();
 		Query query=s.createQuery(hql);
 		List<Supplier>sup=query.list();

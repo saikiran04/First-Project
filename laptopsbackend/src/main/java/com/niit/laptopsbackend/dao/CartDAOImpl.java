@@ -9,11 +9,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.laptopsbackend.model.Cart;
 import com.niit.laptopsbackend.model.Category;
+import com.niit.laptopsbackend.model.User;
 
+@Repository("cartDAO")
+@Transactional
 public class CartDAOImpl implements ICartDAO {
 	
 	@Autowired
@@ -88,7 +92,7 @@ public class CartDAOImpl implements ICartDAO {
 	   try {
 	   String hql="from Cart where id="+id;
 		Session s=sessionFactory.openSession();
-		System.out.println("I am in get");
+		System.out.println("I am in getbyid");
 		Transaction tx=s.beginTransaction();
 		org.hibernate.Query query=s.createQuery(hql);
 		List<Cart> list=query.list();
@@ -133,7 +137,7 @@ public class CartDAOImpl implements ICartDAO {
 		try {
 			   String hql="from Cart where user_userid="+id;
 				Session s=sessionFactory.openSession();
-				System.out.println("I am in get");
+				System.out.println("I am in listcartproducts");
 				Transaction tx=s.beginTransaction();
 				org.hibernate.Query query=s.createQuery(hql);
 				List<Cart> all=query.list();
@@ -153,7 +157,7 @@ public class CartDAOImpl implements ICartDAO {
 		 try {
 			   String hql="from Cart where user_userid="+id;
 				Session s=sessionFactory.openSession();
-				System.out.println("I am in get");
+				System.out.println("I am in totalproducts");
 				Transaction tx=s.beginTransaction();
 				org.hibernate.Query query=s.createQuery(hql);
 				List<Cart> all=query.list();
@@ -196,7 +200,7 @@ public class CartDAOImpl implements ICartDAO {
 	public List<Cart> list() {
 	try {
 		String hql="from Cart";
-		Session s=sessionFactory.getCurrentSession();
+		Session s=sessionFactory.openSession();
 		Transaction tx=s.beginTransaction();
 		org.hibernate.Query query=s.createQuery(hql);
 		List<Cart> all=query.list();
@@ -230,7 +234,7 @@ public class CartDAOImpl implements ICartDAO {
 		try {
 			   String hql="from Cart where cartid="+id;
 				Session s=sessionFactory.openSession();
-				System.out.println("I am in get");
+				System.out.println("I am in getCart");
 				Transaction tx=s.beginTransaction();
 				org.hibernate.Query query=s.createQuery(hql);
 				List<Cart> list=query.list();
@@ -266,12 +270,18 @@ public class CartDAOImpl implements ICartDAO {
 	public Cart getCartWithUserId(Integer id) {
 		try {
 			String hql="from Cart where user_userid="+id;
-		Session s=sessionFactory.getCurrentSession();
+		Session s=sessionFactory.openSession();
 		Transaction tx=s.beginTransaction();
 		Query query=s.createQuery(hql);
 		List<Cart> all=query.getResultList();
 		tx.commit();
 		if(all!=null) {
+			for(Cart a:all)
+			{
+				System.out.println(a.getQuantity());
+				System.out.println(a.getCartid());
+			}
+			
 			return all.get(0);
 		}else {
 		return null;

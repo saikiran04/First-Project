@@ -6,7 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +76,7 @@ public class HomeController {
 		return mv; 
 	}
 	
-	@RequestMapping("/{id}ViewProfile")
+	@RequestMapping("/{id}/ViewProfile")
 	public String showProfile(@PathVariable Integer id,ModelMap model)
 	{
 		model.addAttribute("user",userDAO.getbyid(id));
@@ -118,34 +120,7 @@ public class HomeController {
 		 
 		return mv; 
 	}
-	/*@RequestMapping("/Cart")
-	public ModelAndView showCart()
-	{
-		 ModelAndView mv=new ModelAndView("Cart");
-		 
-		return mv; 
-	}
-	@RequestMapping("/AddtoCart")
-	public ModelAndView showAddtoCart()
-	{
-		 ModelAndView mv=new ModelAndView("AddtoCart");
-		 
-		return mv; 
-	}*/
 	
-	/*@RequestMapping("/AddProduct")
-	public ModelAndView showProduct(Model model) {
-		
-		ModelAndView m=new ModelAndView("AddProduct");
-		model.addAttribute("categoryList", categoryDAO.getCategories());
-		model.addAttribute("supplierList", supplierDAO.getSuppliers());
-		model.addAttribute("productList", productDAO.list());
-		
-	
-		return m;
-		
-		
-	}*/
 	
 	@RequestMapping("/Welcome")
 	public ModelAndView showWelcome()
@@ -183,7 +158,7 @@ public class HomeController {
 		return mv;
 	}
 	@RequestMapping("/perform_logout")
-	public ModelAndView showLogout(HttpServletRequest request,HttpSession session) {
+	public ModelAndView showLogout(HttpServletRequest request,HttpSession session,HttpServletResponse response) {
 		System.out.println("logout");
 		ModelAndView mv=new ModelAndView("mainpage");
 		session.invalidate();
@@ -192,6 +167,8 @@ public class HomeController {
 		mv.addObject("loggedOut", "true");
 		
 		return mv;
+		
+		
 		
 	}
 	

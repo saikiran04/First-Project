@@ -51,25 +51,7 @@
 			<li><a href="Contactus">Contact Us</a></li>
 
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<c:choose>
-				<c:when test="${empty loggedInUser}">
-					<li><a href="Register"><span
-							class="glyphicon glyphicon-user"></span>Signup</a></li>
-					<li><a href="Login"><span
-							class="glyphicon glyphicon-log-in"></span>Login</a></li>
-				</c:when>
-				<c:when test="${not empty loggedInUser}">
-					<li><a href="Cart">Cart</a></li>
-					<li><a href="${loggedInUserID}ViewProfile">View Profile</a></li>
-					<div class="media" style="float:left;">
-					
-					<img src="/laptopsfrontend/pics/${loggedInUser}.jpg" class="media-object" style="width:80px"></img>
-					</div>
-					<li class="navbar-text" style="font-size:100%">welcome ${loggedInUser}!</li>
-					<li><a href="mainpage">Sign out</a></li>
-
-					<form class="navbar-form navbar-right">
+		<form class="navbar-form navbar-right">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search">
 							<div class="input-group-btn">
@@ -79,7 +61,26 @@
 							</div>
 						</div>
 					</form>
+		
+		<ul class="nav navbar-nav navbar-right">
+			<c:choose>
+				<c:when test="${empty loggedInUser}">
+					<li><a href="Register"><span
+							class="glyphicon glyphicon-user"></span>Signup</a></li>
+					<li><a href="Login"><span
+							class="glyphicon glyphicon-log-in"></span>Login</a></li>
+				</c:when>
+				<c:when test="${not empty loggedInUser}">
+					<li><a href="${loggedInUserID}/Cart">Cart</a></li>
+					<li><a href="${loggedInUserID}/ViewProfile">View Profile</a></li>
+					<div class="media" style="float:left;">
+					
+					<img src="/laptopsfrontend/pics/${loggedInUser}.jpg" class="media-object" style="width:80px"></img>
+					</div>
+					<li class="navbar-text" style="font-size:100%">welcome ${loggedInUser}!</li>
+					<li><a href="mainpage">Sign out</a></li>
 
+					
 
 				</c:when>
 			</c:choose>

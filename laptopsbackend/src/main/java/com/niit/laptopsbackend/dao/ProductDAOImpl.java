@@ -49,6 +49,7 @@ public class ProductDAOImpl implements IProductDAO {
 		Transaction tx=s.beginTransaction();
 		Query query=s.createQuery("From Product");
 		List<Product>pro=query.list();
+		s.flush();
 		tx.commit();
 		if(pro!=null)
 		{
