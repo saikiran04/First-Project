@@ -17,7 +17,7 @@ MY CART<br>
 			</tr>
 			<c:forEach items="${mycartList}" var="cart">
 				<tr>
-					<td>${cart.cartitemid}</td>
+					<td>${cart.cartid}</td>
 					<%-- <td>${cart.cartproduct.description}</td> --%>
 					<td>${cart.quantity}</td>
 					<td>${cart.grandtotal}</td>

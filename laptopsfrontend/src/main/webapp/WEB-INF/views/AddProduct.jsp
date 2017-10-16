@@ -83,7 +83,7 @@ border:1;
           <!--  core tags,if or choose, $-expression language -->
           
           <c:if test="${!empty productList }">
-           <table class="tg" style="border:'1'">
+           <table class="tg" align="center" style="border:'1'">
             <tr>
              <th>Product Id</th>
              <th>ProductName</th>

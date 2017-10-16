@@ -84,13 +84,7 @@ public class HomeController {
 		return "ViewProfile" ;
 	}
 	
-	@RequestMapping("/{id}/ViewDetails")
-	public String showDetails(@PathVariable Integer id,ModelMap model)
-	{
-		model.addAttribute("product",productDAO.get(id));
-		 
-		return "ViewDetails" ;
-	}
+	
 	@RequestMapping("/Register")
 	public ModelAndView showRegister()
 	{

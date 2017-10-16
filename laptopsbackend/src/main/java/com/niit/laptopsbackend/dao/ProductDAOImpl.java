@@ -2,10 +2,10 @@ package com.niit.laptopsbackend.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +28,7 @@ public class ProductDAOImpl implements IProductDAO {
 
 	
 
-
+	@Transactional
 	public void saveProduct(Product product) {
 
 		Session s=sessionFactory.getCurrentSession();
@@ -68,10 +68,10 @@ public class ProductDAOImpl implements IProductDAO {
 
 
 
-
+	@Transactional
 	public void delete(Product product) {
 		Session s=sessionFactory.getCurrentSession();
-		System.out.println("I am in DAO");
+		System.out.println("I am in Product DAO");
 		Transaction t=s.beginTransaction();
 		s.delete(product);
 		t.commit();
@@ -88,23 +88,23 @@ public class ProductDAOImpl implements IProductDAO {
 
 
 
-
+	@Transactional
 	public Product get(int id) {
 		String hql="from Product where prodid="+id;
 		Session s=sessionFactory.openSession();
-		System.out.println("I am in get");
+		System.out.println("I am in  Product get");
 		Transaction t=s.beginTransaction();
 		Query query=s.createQuery(hql);
 		List<Product>prod=query.list();
 		if(prod==null)
 		{
-			System.out.println("List empty");
+			System.out.println("Product List empty");
 			return null;
 		
 		}
 		else
 		{
-			System.out.println("List  not empty");
+			System.out.println("Product List  not empty");
 			return prod.get(0);
 		}
 	}

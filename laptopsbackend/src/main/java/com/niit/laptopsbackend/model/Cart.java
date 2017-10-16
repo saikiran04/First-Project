@@ -17,14 +17,23 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table
-@Component
-public class Cart {
+
+public class Cart implements java.io.Serializable {
+	
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cartid;
 	private int quantity;
 	private int grandtotal;
+	
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	private User user;
+	
+	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="cart",fetch=FetchType.EAGER)
+	private List<CartItem> cartitems=new ArrayList<CartItem>();
 	
 	public int getCartid() {
 		return cartid;
@@ -66,11 +75,6 @@ public class Cart {
 		this.cartitems = cartitems;
 	}
 
-	@OneToOne(cascade=CascadeType.PERSIST)
-	private User user;
-	
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="cart",fetch=FetchType.EAGER)
-	private List<CartItem> cartitems=new ArrayList<CartItem>();
 	
 	
 	
