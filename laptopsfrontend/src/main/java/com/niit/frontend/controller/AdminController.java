@@ -131,6 +131,19 @@ public class AdminController {
 		return "redirect:/AddCategory" ;
 		
 	}
+	@RequestMapping(value="/editcategory{id}")
+	public ModelAndView showEditCategory(@PathVariable("id") int id, Model model) throws Exception {
+		System.out.println(id);
+		category=categoryDAO.get(id);
+		System.out.println("Category update");
+		ModelAndView mv=new ModelAndView("AddCategory");
+		categoryDAO.saveCategory(category);
+		
+		
+		System.out.println("delete Id:" + id);
+		return mv ;
+		
+	}
 
 //----------------------------Product Operations --------------------------
 	
@@ -151,9 +164,16 @@ public class AdminController {
 	
 	@RequestMapping(value="/addprod",method=RequestMethod.POST)
 	public String ShowAddProduct(@Valid @ModelAttribute("product")Product prod, Model model, BindingResult result, HttpServletRequest request) throws IOException {
+		if(result.hasErrors()) {
+			return "AddProduct";
+		}
+		else {
+			
+		
 		System.out.println(prod.getProdname());
 		System.out.println("image uploaded");
 		System.out.println("my product controller called");
+		
 		MultipartFile image=prod.getImg();
 		Path path;
 		path=Paths.get("C:/Users/Asaikiran/gitmain/laptopsfrontend/src/main/webapp/pics/" +prod.getProdname() + ".jpg");
@@ -175,17 +195,19 @@ public class AdminController {
 			productDAO.saveProduct(prod);
 		}else {
 			productDAO.saveProduct(prod);
-			return "redirect:/AddProduct";
+			return "AddProduct";
 		}
 		
-		HttpSession session=request.getSession(false);
+		/*HttpSession session=request.getSession(false);
 		String email1=(String)session.getAttribute("email");
-		String username=(String)session.getAttribute("loggedInUser");
+		String username=(String)session.getAttribute("loggedInUser");*/
 		model.addAttribute("productList",productDAO.list());
 		model.addAttribute("categoryList", categoryDAO.getCategories());
 		model.addAttribute("supplierList", supplierDAO.getSuppliers());
+		System.out.println("all supplier got");
 		
 		return "redirect:/AddProduct";
+		}
 		
 	}
 	@RequestMapping(value="/deleteproduct{id}")
@@ -199,6 +221,22 @@ public class AdminController {
 		
 		System.out.println("delete Id:" + id);
 		return "redirect:/AddProduct" ;
+		
+	}
+	@RequestMapping(value="/editproduct{id}")
+	public ModelAndView showEditProduct(@PathVariable("id") String id, Model model) throws Exception {
+		int i=Integer.parseInt(id);
+		System.out.println(id);
+		
+		product=productDAO.get(i);
+		System.out.println("Product update");
+		ModelAndView mv=new ModelAndView("AddProduct");
+		productDAO.delete(product);
+		
+		
+		System.out.println("edit Id:" + id);
+		
+		return mv ;
 		
 	}
 	@RequestMapping("/allproducts")
@@ -253,6 +291,19 @@ public class AdminController {
 		
 		System.out.println("delete Id:" + id);
 		return "redirect:/AddSupplier" ;
+		
+	}
+	@RequestMapping(value="/editsupplier{id}")
+	public ModelAndView showEditSupplier(@PathVariable("id") int id, Model model) throws Exception {
+		System.out.println(id);
+		supplier=supplierDAO.get(id);
+		System.out.println("Supplier edit");
+		
+		supplierDAO.saveOrUpdate(supplier);
+		
+		System.out.println("Edit Id:" + id);
+		ModelAndView mv=new ModelAndView("AddSupplier");
+		return mv ;
 		
 	}
 	

@@ -78,7 +78,7 @@
 					<img src="/laptopsfrontend/pics/${loggedInUser}.jpg" class="media-object" style="width:80px"></img>
 					</div>
 					<li class="navbar-text" style="font-size:100%">welcome ${loggedInUser}!</li>
-					<li><a href="mainpage">Sign out</a></li>
+					<li><a href="perform_logout" >Sign out</a></li>
 
 					
 

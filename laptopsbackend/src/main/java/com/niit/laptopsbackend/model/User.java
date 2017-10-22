@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table
@@ -15,18 +18,26 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userid;
+	@NotEmpty
 	private String username;
 	private String firstname;
 	private String lastname;
+	
 	@Column(unique=true)
+	@NotEmpty
+	@Email
 	private String emailid;
+	
 	private int mobile;
+	@NotEmpty
+	@Size(min=6,max=15)
 	private String password;
 	private String role;
 	
 	private String enabled;
 	
 	@Transient
+	@NotEmpty
 	private String cpassword;
 	
 	@Transient

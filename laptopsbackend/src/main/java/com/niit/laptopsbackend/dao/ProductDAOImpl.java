@@ -49,7 +49,7 @@ public class ProductDAOImpl implements IProductDAO {
 		Transaction tx=s.beginTransaction();
 		Query query=s.createQuery("From Product");
 		List<Product>pro=query.list();
-		s.flush();
+		
 		tx.commit();
 		if(pro!=null)
 		{
@@ -94,8 +94,12 @@ public class ProductDAOImpl implements IProductDAO {
 		Session s=sessionFactory.openSession();
 		System.out.println("I am in  Product get");
 		Transaction t=s.beginTransaction();
+		
 		Query query=s.createQuery(hql);
+		
 		List<Product>prod=query.list();
+		s.close();
+		//t.commit();
 		if(prod==null)
 		{
 			System.out.println("Product List empty");

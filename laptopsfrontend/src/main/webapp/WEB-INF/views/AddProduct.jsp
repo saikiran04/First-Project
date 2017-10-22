@@ -6,11 +6,22 @@
 <html>
 <head>
 <style>
-table{
-align:centre;
-border:1;
-
+table#t1{border-spacing:30px;
 }
+table{
+   border-color:red }
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+tr:hover {background-color: #f5f5f5}
+th {
+    padding: 10px;
+    }
+td {
+    padding:5px;
+    }    
+
 
 </style>
 
@@ -19,7 +30,7 @@ border:1;
 <body>
 
   <form:form method="POST" action="addprod" commandName="product" enctype="multipart/form-data">
-  <table>
+  <table id="t1">
   <tr>
     <td><h2>Add Product</h2></td>
     </tr>
@@ -33,27 +44,30 @@ border:1;
        <tr>
         <td><form:label path="prodname">Product Name</form:label></td>
         <td><form:input path="prodname"/></td>
+        <td><span><form:errors path="prodname" cssStyle="color:#ff0000;"/></span></td>
         </tr>
         <tr>
          <td><form:label path="price">Price</form:label></td>
          <td><form:input path="price"/></td>
+         <td><span><form:errors path="price" cssStyle="color:#ff0000;"/></span></td>
          </tr>
          
          <tr>
           <td><form:label path="quantity">Quantity</form:label></td>
           <td><form:input path="quantity"/></td>
+          <td><span><form:errors path="quantity" cssStyle="color:#ff0000;"/></span></td>
           </tr>
           
           <!-- select:dropdown, items:collection, itemvalue:name to item -->
           
           <tr>
-          <td>Category Id</td>
+          <td>Category </td>
           <td><form:select path="catid" items="${categoryList}" itemValue="catid" itemLabel="catid">
           </form:select></td>
           </tr>
 
          <tr>
-          <td>Supplier Id</td>
+          <td>Supplier </td>
           <td><form:select path="supplierid" items="${supplierList}" itemValue="supplierid" itemLabel="supplierid">
           </form:select></td>
           </tr>
@@ -78,12 +92,12 @@ border:1;
           </table>
           </form:form>
           
-          <h2>Product List</h2>
+          <h2 align="center">Product List</h2>
           
           <!--  core tags,if or choose, $-expression language -->
           
           <c:if test="${!empty productList }">
-           <table class="tg" align="center" style="border:'1'">
+           <table class="tg" align="center">
             <tr>
              <th>Product Id</th>
              <th>ProductName</th>
@@ -103,7 +117,7 @@ border:1;
           <td>${product.quantity }</td>
          <td>${product.category.categoryname }</td>
   <td>${product.supplier.suppliername }</td>
-   <td><a href="<c:url value='/editproducts${product.prodid }'/>">Edit</a></td>
+   <td><a href="<c:url value='/editproduct${product.prodid }'/>">Edit</a></td>
    
    <td><a href="<c:url value='/deleteproduct${product.prodid }'/>">Delete</a></td>
    </tr>

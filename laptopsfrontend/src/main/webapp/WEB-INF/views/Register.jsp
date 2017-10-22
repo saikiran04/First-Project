@@ -8,26 +8,11 @@
 <!-- <title>Insert title here</title> -->
 </head>
 <body>
-<!-- <div class="container">
-<form action="mainpage" method="post" role="form">
-<div class="form-group">
-<label for="txtname">Enter Name:</label><input type="text" name="txtname" required class="form-control">
-<label for="txtfirst">Enter First Name:</label><input type="text" name="txtfirst" required class="form-control">
-<label for="txtlast">Enter Last Name:</label><input type="text" name="txtlast" required class="form-control">
 
-<label for="txtemail">Enter Email:</label><input type="text" name="txtemail" required class="form-control">
-<label for="txtmob">Enter MobileNumber:</label><input type="text" name="txtmob" required class="form-control">
-<label for="txtpass">Enter Password:</label><input type="text" name="txtpasss" required class="form-control">
-
-<button type="submit" class="btn btn-success">Register</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-<button type="button" class="btn btn-danger">Cancel</button>
-</div>
-</form>
-</div> -->
 <h2 align="center" style="color:green">Register Here</h2>
 <hr>
 <form:form method="POST" action="addus" commandName="user" enctype="multipart/form-data">
-  <table align="center">
+  <table align=center>
   
      <%-- <tr>
        <td><form:label path="userid">ID</form:label></td>
@@ -37,6 +22,7 @@
        <tr>
         <td><form:label path="username">Enter User Name</form:label></td>
         <td><form:input path="username"/></td>
+        <td><span><form:errors path="username" cssStyle="color:#ff0000;"/></span></td>
         </tr>
         <tr></tr>
         
@@ -51,19 +37,23 @@
         <tr>
         <td><form:label path="emailid">Enter Email ID</form:label></td>
         <td><form:input path="emailid"/></td>
+        <td><span><form:errors path="emailid" cssStyle="color:#ff0000;"/></span></td>
         </tr>
         <tr>
          <td><form:label path="password">Enter Password</form:label></td>
          <td><form:input path="password" type="password"/></td>
+         <td><span><form:errors path="password" cssStyle="color:#ff0000;"/></span></td>
          </tr>
          
          <tr>
           <td><form:label path="cpassword">Enter Confirm Password</form:label></td>
           <td><form:input path="cpassword" type="password"/></td>
+          <td><span><form:errors path="cpassword" cssStyle="color:#ff0000;"/></span></td>
           </tr>
           <tr>
         <td><form:label path="mobile">Enter Mobile number</form:label></td>
-        <td><form:input path="mobile"/></td>
+        <td><form:input path="mobile" required="true" /></td>
+        <%-- <td><span><form:errors path="mobile" cssstyle="color:#ff0000;"/></span></td> --%>
         </tr>
           
           
@@ -84,6 +74,10 @@
           
           </tr>
           </table>
+          <form:errors path="cpassword" cssClass="error message" cssStyle="width:900px"/>
+          <c:if test="${not empty errMsg}">
+          <h4 class="error message" style="width:900px; color:red;">${errMsg}</h4>
+          </c:if>
           </form:form>
 
 
@@ -94,6 +88,7 @@ h2{
 color:"green";
 }
 table {
+
 border:"1";
 }
 </style>

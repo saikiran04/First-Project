@@ -5,7 +5,18 @@
 
 <html>
 <head>
+<style>
+table{ border-color:red }
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+tr:hover {background-color: #f5f5f5}
 
+th, td {
+    padding: 10px;
+}
+</style>
 <title>Add Product</title>
 </head>
 <body>
@@ -53,14 +64,15 @@
           </table>
           </form:form>
           
-          <h2>Supplier List</h2>
+          <h2 align="center">Supplier List</h2>
           
           <!--  core tags,if or choose, $-expression language -->
           
           <c:if test="${!empty supplierList }">
-           <table class="tg">
+           <table class="tg" align="center">
             <tr>
-             <th>Supplier Id</th>
+             <th background-color: #4CAF50;
+                color: white;>Supplier Id</th>
              <th>SupplierName</th>
              <th>Address</th>
              <th>Email</th>

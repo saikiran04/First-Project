@@ -85,13 +85,13 @@ public class SupplierDAOImpl implements ISupplierDAO {
 		List<Supplier>sup=query.list();
 		if(sup==null)
 		{
-			
+			System.out.println("List empty");
 			return null;
 		
 		}
 		else
 		{
-			System.out.println("List empty");
+			
 			return sup.get(0);
 		}
 	}

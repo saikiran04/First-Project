@@ -11,7 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -21,9 +23,11 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int prodid;
-	
+	@NotEmpty(message="Product name cannot be empty")
 	private String prodname;
+	@Min(message="Quantity cannot be zero", value = 1)
 	private int quantity;
+	@Min(message="Price cannot be zero",value = 1)
 	private int price;
 	
 	
@@ -40,8 +44,8 @@ public class Product {
 	}
 	public void setSuppliername(String suppliername) {
 		this.suppliername = suppliername;
-	}*/
-
+	}
+*/
 
 	@Column(name="supplierid")
 	private int supplierid;
@@ -52,37 +56,25 @@ public class Product {
 	}
 	public void setCategoryname(String categoryname) {
 		this.categoryname = categoryname;
-	}*/
+	}
+	*/
 	
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
 	@JoinColumn(name="catid",insertable=false,updatable=false)
 	private Category category;
 	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.LAZY)
 	@JoinColumn(name="supplierid",insertable=false,updatable=false)
 	private Supplier supplier;
 	
 	/*@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="categoryname",insertable=false,updatable=false)
-	//private Category category;
+	private Category category;
 	
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="suppliername",insertable=false,updatable=false)
-*///	private Supplier supplier;
+	private Supplier supplier;*/
 	
-	public int getCatid() {
-		return catid;
-	}
-	public void setCatid(int catid) {
-		this.catid = catid;
-	}
-	public int getSupplierid() {
-		return supplierid;
-	}
-	public void setSupplierid(int supplierid) {
-		this.supplierid = supplierid;
-	}
 	public Category getCategory() {
 		return category;
 	}
@@ -95,6 +87,19 @@ public class Product {
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}
+	public int getCatid() {
+		return catid;
+	}
+	public void setCatid(int catid) {
+		this.catid = catid;
+	}
+	public int getSupplierid() {
+		return supplierid;
+	}
+	public void setSupplierid(int supplierid) {
+		this.supplierid = supplierid;
+	}
+	
 	
 	public MultipartFile getImg() {
 		return img;
@@ -126,6 +131,7 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
 		
 
 }
