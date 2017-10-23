@@ -3,12 +3,12 @@
   
 ## Prerequisites
   The following are the Softwares used for developing the project:
-  1.Eclipse-Oxygen https://www.eclipse.org/
-  2.H2 http://www.h2database.com/html/main.html
+  1. Eclipse-Oxygen https://www.eclipse.org/
+  2. H2 http://www.h2database.com/html/main.html
  
 ## This Project is divided into two modules:
- #  1.FrontEnd
- #  2.BackEnd
+ #  1. FrontEnd
+ #  2. BackEnd
  
 ## Deployment
    The application can be accessed using http://172.23.172.217:8092/laptopsfrontend/ URL
@@ -16,9 +16,9 @@
 ## In the FrontEnd 
    The Frontend module comprises of Controllers, Jsp pages, Spring-Servlet and Spring Security Servlet. 
    There are 3 Controllers:
-     1.Home Controller
-     2.Admin Controller
-     3.Cart Controller
+     1. Home Controller
+     2. Admin Controller
+     3. Cart Controller
    The Jsp pages provides the view of the pages displayed on the website.
    The Spring Security servlet provies the security for the website.
    # Prequistes used in Frontend are:
