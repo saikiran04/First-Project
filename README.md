@@ -22,7 +22,7 @@
    The Jsp pages provides the view of the pages displayed on the website.
    The Spring Security servlet provies the security for the website.
    ### Prequistes used in Frontend are:
-    1.Bootstrap http://getbootstrap.com/
+    1.Bootstrap  http://getbootstrap.com/
     2.Jquery
     3.Html
    ### Dependencies used:
