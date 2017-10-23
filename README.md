@@ -21,11 +21,11 @@
      3. Cart Controller
    The Jsp pages provides the view of the pages displayed on the website.
    The Spring Security servlet provies the security for the website.
-   ### Prequistes used in Frontend are:
+   ### Prequistes used in Frontend 
     1.Bootstrap  http://getbootstrap.com/
     2.Jquery
     3.Html
-   ### Dependencies used:
+   ### Dependencies 
     The dependencies are provided from https://mvnrepository.com/ URL
      * Spring dependencies like Spring-Core, Spring-Web,Spring-tx ....
      * Spring Security dependencies like Spring-Secutiry web, Spring-Security Core, Spring-Security Config, Spring-Security Taglibs
@@ -34,7 +34,7 @@
    * In the Application Config beans are created using java.
    * The Model Classes are provided for creating tables in the database.
    * DAO classes provides the methods and functions. 
-  ### Dependencies used:
+  ### Dependencies 
     The dependencies are provided from https://mvnrepository.com/ URL
     * Spring dependencies like Spring-Core, Spring-Web,Spring-tx ....
     * Hibernate dependencies like Hibernate Core, Hibernate Validator, Hibernate-entitymanager.
