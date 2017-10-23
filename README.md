@@ -34,7 +34,7 @@
    * In the Application Config beans are created using java.
    * The Model Classes are provided for creating tables in the database.
    * DAO classes provides the methods and functions. 
-  ## Dependencies 
+  ### Dependencies 
     The dependencies are provided from https://mvnrepository.com/ URL
     * Spring dependencies like Spring-Core, Spring-Web,Spring-tx ....
     * Hibernate dependencies like Hibernate Core, Hibernate Validator, Hibernate-entitymanager.
