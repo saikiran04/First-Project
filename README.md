@@ -7,8 +7,8 @@
   2. H2 http://www.h2database.com/html/main.html
  
 ## This Project is divided into two modules:
- ##  1. FrontEnd
- ##  2. BackEnd
+ ###  1. FrontEnd
+ ###  2. BackEnd
  
 ## Deployment
    The application can be accessed using http://172.23.172.217:8092/laptopsfrontend/ URL
