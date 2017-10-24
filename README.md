@@ -40,8 +40,8 @@
     * Hibernate dependencies like Hibernate Core, Hibernate Validator, Hibernate-entitymanager.
     
 ## Running the tests
-   The Tests are done by using JUnit test http://junit.org/junit5/
-    * One of the Examples of the Test Cases used is ProductTest.java. It is used to test the saving of data in the database table.
+   The Tests are done by using JUnit test http://junit.org/junit5/ .
+ * One of the Examples of the Test Cases used is ProductTest.java. It is used to test the saving of data in the database table.
    This JUnit Test is used my implimenting the following Dependency
      <!-- https://mvnrepository.com/artifact/junit/junit -->
             <dependency>
