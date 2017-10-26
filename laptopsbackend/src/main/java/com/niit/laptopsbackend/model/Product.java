@@ -16,6 +16,8 @@ import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
 @Entity
 @Table
 public class Product {
@@ -63,7 +65,7 @@ public class Product {
 	@JoinColumn(name="catid",insertable=false,updatable=false)
 	private Category category;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
 	@JoinColumn(name="supplierid",insertable=false,updatable=false)
 	private Supplier supplier;
 	

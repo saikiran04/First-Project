@@ -3,6 +3,7 @@ package com.niit.laptopsbackend.dao;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,7 +30,7 @@ public class CategoryDAOImpl implements ICategoryDAO {
 	{
 		Session s=sessionFactory.getCurrentSession();
 		Transaction t=s.beginTransaction();
-		s.saveOrUpdate(category);
+		s.save(category);
 		t.commit();
 		/*s.clear();*/
 		
@@ -107,6 +108,21 @@ public class CategoryDAOImpl implements ICategoryDAO {
 			System.out.println(e);
 			return null;
 		}*/
+	@Transactional
+	public boolean Update(Category category) {
+		try {
+			Session session=this.sessionFactory.getCurrentSession();
+			Transaction tx=session.beginTransaction();
+			session.update(category);
+			System.out.println("Inside Category update");
+			
+			tx.commit();
+			return true;
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 		
 		
 	}

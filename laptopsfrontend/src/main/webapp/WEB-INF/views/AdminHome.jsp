@@ -56,18 +56,16 @@
 
 
 				</ul></li>
+				</ul>
 
 			
-			<li><a href="#"></a></li>
-			<li><a href="Contactus">Contact Us</a></li>
-			<ul class="nav navbar-nav navbar-right">
-			<li><a href="perform_logout"><span
+			
+              <ul class="nav navbar-nav navbar-right">			
+              <li><a href="perform_logout"><span
 							class="glyphicon glyphicon-log-out"></span>Logout</a></li></ul>
-		</ul>
+		
 		</div>
 		</nav>
-		<div>
-<img src="images/apple 2.jpg">
-</div>
+		
 </body>
 </html>

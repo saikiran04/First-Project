@@ -84,6 +84,7 @@ public class ApplicationConfig {
 	}
 	
 	
+	
 	@Autowired
 	@Bean(name="productDAO")
 	public IProductDAO getProductDAO(SessionFactory sessionFactory)

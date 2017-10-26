@@ -132,17 +132,11 @@ public class AdminController {
 		
 	}
 	@RequestMapping(value="/editcategory{id}")
-	public ModelAndView showEditCategory(@PathVariable("id") int id, Model model) throws Exception {
-		System.out.println(id);
-		category=categoryDAO.get(id);
-		System.out.println("Category update");
-		ModelAndView mv=new ModelAndView("AddCategory");
-		categoryDAO.saveCategory(category);
-		
-		
-		System.out.println("delete Id:" + id);
-		return mv ;
-		
+	public String showEditCategory(@PathVariable("id") int id, Model model) throws Exception {
+		model.addAttribute("category",this.categoryDAO.get(id));
+		//categoryDAO.update(category);
+		model.addAttribute("category", this.categoryDAO.getCategories());
+		return "addCategory";
 	}
 
 //----------------------------Product Operations --------------------------

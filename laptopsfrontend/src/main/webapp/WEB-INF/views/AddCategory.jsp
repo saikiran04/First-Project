@@ -14,7 +14,7 @@ th {
 tr:hover {background-color: #f5f5f5}
 
 th, td {
-    padding: 15px;
+    padding: 10px;
 }
 </style>
 <title>Add Product</title>

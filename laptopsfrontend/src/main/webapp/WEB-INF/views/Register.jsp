@@ -6,6 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- <title>Insert title here</title> -->
+<style>
+tr{
+    padding-bottom: 5px;
+}
+</style>
 </head>
 <body>
 
@@ -20,38 +25,38 @@
        </tr>
        --%>
        <tr>
-        <td><form:label path="username">Enter User Name</form:label></td>
+        <td><form:label path="username">User Name</form:label></td>
         <td><form:input path="username"/></td>
         <td><span><form:errors path="username" cssStyle="color:#ff0000;"/></span></td>
         </tr>
         <tr></tr>
         
         <tr>
-        <td><form:label path="firstname">Enter First Name</form:label></td>
+        <td><form:label path="firstname">First Name</form:label></td>
         <td><form:input path="firstname"/></td>
         </tr>
         <tr>
-        <td><form:label path="lastname">Enter Last Name</form:label></td>
+        <td><form:label path="lastname">Last Name</form:label></td>
         <td><form:input path="lastname"/></td>
         </tr>
         <tr>
-        <td><form:label path="emailid">Enter Email ID</form:label></td>
+        <td><form:label path="emailid">Email ID</form:label></td>
         <td><form:input path="emailid"/></td>
         <td><span><form:errors path="emailid" cssStyle="color:#ff0000;"/></span></td>
         </tr>
         <tr>
-         <td><form:label path="password">Enter Password</form:label></td>
+         <td><form:label path="password">Password</form:label></td>
          <td><form:input path="password" type="password"/></td>
          <td><span><form:errors path="password" cssStyle="color:#ff0000;"/></span></td>
          </tr>
          
          <tr>
-          <td><form:label path="cpassword">Enter Confirm Password</form:label></td>
+          <td><form:label path="cpassword">Confirm Password</form:label></td>
           <td><form:input path="cpassword" type="password"/></td>
           <td><span><form:errors path="cpassword" cssStyle="color:#ff0000;"/></span></td>
           </tr>
           <tr>
-        <td><form:label path="mobile">Enter Mobile number</form:label></td>
+        <td><form:label path="mobile">Mobile number</form:label></td>
         <td><form:input path="mobile" required="true" /></td>
         <%-- <td><span><form:errors path="mobile" cssstyle="color:#ff0000;"/></span></td> --%>
         </tr>

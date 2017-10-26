@@ -10,5 +10,6 @@ public interface ICategoryDAO {
 	public List<Category>getCategories();
 	public void delete(Category category);
 	public Category get(int id);
+	public boolean Update(Category category);
 
 }
